@@ -4,7 +4,6 @@ import { User } from '@prisma/client';
 import { AuthService } from './auth.service';
 import { GetUser } from './decorator';
 import { AuthLoginDto, AuthRegisterDto } from './dto';
-import { plainToInstance } from 'class-transformer';
 import { Tokens } from './types';
 
 @Controller('auth')
@@ -24,9 +23,9 @@ export class AuthController {
     }
 
     @UseGuards(AuthGuard('jwt'))
-    @Post('logout')
+    @Post('refresh_token')
     @HttpCode(HttpStatus.OK)
-    logout(@GetUser() user: User): Promise<void> {
-        return this.authService.logout(user.id);
+    refreshToken(@GetUser() user: User): Promise<Tokens> {
+        return this.authService.refreshToken(user);
     }
 }

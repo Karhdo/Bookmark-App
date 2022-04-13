@@ -54,7 +54,11 @@ export class AuthService {
         return tokens;
     }
 
-    async logout(userId: number): Promise<void> {}
+    async refreshToken(user: User): Promise<Tokens> {
+        const tokens = await this.createToken(user.id, user.email);
+
+        return tokens;
+    }
 
     async createToken(userId: number, email: string): Promise<Tokens> {
         const payload = {

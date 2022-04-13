@@ -23,7 +23,7 @@ model User {
 
 model Folder {
   id          Int @id @default(autoincrement())
-  name        String? @unique @db.VarChar(50)
+  name        String? @db.VarChar(50)
   bookmark    Bookmark[] @relation(name: "Bookmark_Folder_folderId")
 
   createdAt   DateTime @default(now())
