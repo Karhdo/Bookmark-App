@@ -49,7 +49,13 @@ export class UserService {
                     id,
                 },
                 include: {
-                    folder: { include: { bookmark: true } },
+                    folder: {
+                        select: {
+                            id: true,
+                            name: true,
+                            bookmark: true,
+                        },
+                    },
                 },
             });
 

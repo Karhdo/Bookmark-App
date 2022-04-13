@@ -23,6 +23,7 @@ export class AuthService {
                     hash,
                 },
             });
+            delete result.hash;
 
             return result;
         } catch (error) {
